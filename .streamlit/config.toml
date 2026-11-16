@@ -1,0 +1,15 @@
+# Tema visual inspirado na identidade do Centro Universitário FMU:
+# vermelho para destaques/ações, preto para texto e fundos claros para leitura.
+[theme]
+base = "light"
+primaryColor = "#C8102E"
+backgroundColor = "#F4F4F5"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#18181B"
+font = "sans serif"
+
+[client]
+toolbarMode = "minimal"
+
+[browser]
+gatherUsageStats = false

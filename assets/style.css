@@ -1,0 +1,267 @@
+/* =========================================================================
+   Assistente Virtual – Centro Universitário FMU
+   Paleta: vermelho (ações/destaques), preto (texto/navegação), branco/cinza.
+   ========================================================================= */
+
+:root {
+  --fmu-red: #C8102E;        /* contraste 5.9:1 sobre branco (WCAG AA) */
+  --fmu-red-dark: #A00D25;
+  --fmu-red-soft: #FDECEE;
+  --fmu-black: #18181B;
+  --fmu-gray-700: #3F3F46;
+  --fmu-gray-500: #5F5F69;   /* contraste 6.3:1 sobre branco */
+  --fmu-gray-200: #E4E4E7;
+  --fmu-gray-100: #F4F4F5;
+  --fmu-white: #FFFFFF;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .05), 0 1px 3px rgba(0, 0, 0, .06);
+}
+
+/* ---------- Layout geral ---------- */
+.block-container {
+  padding-top: 1.5rem;
+  padding-bottom: 7rem;
+  max-width: 860px;
+}
+
+header[data-testid="stHeader"] { background: transparent; }
+
+/* ---------- Cabeçalho institucional ---------- */
+.fmu-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--fmu-black);
+  color: var(--fmu-white);
+  border-radius: var(--radius-lg);
+  border-bottom: 5px solid var(--fmu-red);
+  padding: 1.1rem 1.4rem;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+.fmu-logo {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  background: var(--fmu-red);
+  color: var(--fmu-white);
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: .04em;
+}
+.fmu-header-text { min-width: 0; }
+.fmu-eyebrow {
+  margin: 0;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #FCA5B0;
+}
+.fmu-header h1 {
+  margin: .1rem 0 0;
+  padding: 0;
+  font-size: 1.65rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--fmu-white);
+}
+.fmu-header p.fmu-subtitle {
+  margin: .25rem 0 0;
+  font-size: .95rem;
+  color: #D4D4D8;
+}
+
+/* ---------- Cartão de boas-vindas ---------- */
+.fmu-welcome {
+  background: var(--fmu-white);
+  border: 1px solid var(--fmu-gray-200);
+  border-left: 5px solid var(--fmu-red);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.4rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+.fmu-welcome h2 {
+  margin: 0 0 .4rem;
+  padding: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--fmu-black);
+}
+.fmu-welcome p, .fmu-welcome li { color: var(--fmu-gray-700); font-size: .97rem; }
+.fmu-welcome ul { margin: .4rem 0 0; padding-left: 1.2rem; }
+.fmu-welcome li { margin-bottom: .2rem; }
+
+/* ---------- Avisos (pasta vazia, chave ausente) ---------- */
+.fmu-notice {
+  background: var(--fmu-red-soft);
+  border: 1px solid #F5C2C9;
+  color: var(--fmu-black);
+  border-radius: var(--radius-md);
+  padding: .9rem 1.1rem;
+  margin-bottom: 1rem;
+}
+.fmu-notice strong { color: var(--fmu-red-dark); }
+.fmu-notice code { background: rgba(0, 0, 0, .06); color: var(--fmu-black); }
+
+/* ---------- Balões de conversa ---------- */
+/* Marcadores invisíveis identificam o autor de cada mensagem. */
+.msg-marker { display: none; }
+[data-testid="stElementContainer"]:has(.msg-marker),
+.element-container:has(.msg-marker) { display: none; }
+
+[data-testid="stChatMessage"] {
+  border-radius: var(--radius-lg);
+  padding: .9rem 1.1rem;
+  margin-bottom: .75rem;
+  box-shadow: var(--shadow-sm);
+  gap: .75rem;
+}
+
+/* Assistente: balão branco com detalhe vermelho, alinhado à esquerda. */
+[data-testid="stChatMessage"]:has(.msg-assistant) {
+  background: var(--fmu-white);
+  border: 1px solid var(--fmu-gray-200);
+  border-left: 4px solid var(--fmu-red);
+  margin-right: 2.5rem;
+}
+
+/* Usuário: balão preto, alinhado à direita. */
+[data-testid="stChatMessage"]:has(.msg-user) {
+  background: var(--fmu-black);
+  border: 1px solid var(--fmu-black);
+  flex-direction: row-reverse;
+  margin-left: 2.5rem;
+}
+[data-testid="stChatMessage"]:has(.msg-user) [data-testid="stMarkdownContainer"],
+[data-testid="stChatMessage"]:has(.msg-user) [data-testid="stMarkdownContainer"] * {
+  color: var(--fmu-white);
+}
+[data-testid="stChatMessage"]:has(.msg-user) [data-testid="stMarkdownContainer"] {
+  text-align: right;
+}
+
+/* Avatares */
+[data-testid="stChatMessage"] [data-testid^="stChatMessageAvatar"] {
+  border-radius: 50%;
+}
+[data-testid="stChatMessage"]:has(.msg-assistant) [data-testid^="stChatMessageAvatar"] {
+  background: var(--fmu-red);
+  color: var(--fmu-white);
+}
+[data-testid="stChatMessage"]:has(.msg-user) [data-testid^="stChatMessageAvatar"] {
+  background: var(--fmu-white);
+  color: var(--fmu-black);
+}
+
+/* ---------- Fontes consultadas ---------- */
+.fmu-sources {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem;
+  margin-top: .75rem;
+  padding-top: .65rem;
+  border-top: 1px dashed var(--fmu-gray-200);
+  font-size: .82rem;
+  color: var(--fmu-gray-500);
+}
+.fmu-sources-label { font-weight: 600; color: var(--fmu-gray-700); }
+.fmu-source-chip {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background: var(--fmu-gray-100);
+  border: 1px solid var(--fmu-gray-200);
+  border-radius: 999px;
+  padding: .15rem .65rem;
+  color: var(--fmu-black);
+}
+
+/* ---------- Indicador de carregamento ---------- */
+.fmu-typing {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  color: var(--fmu-gray-500);
+  font-size: .92rem;
+  padding: .2rem 0;
+}
+.fmu-dots { display: inline-flex; gap: 4px; }
+.fmu-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--fmu-red);
+  animation: fmu-bounce 1.2s infinite ease-in-out;
+}
+.fmu-dots span:nth-child(2) { animation-delay: .15s; }
+.fmu-dots span:nth-child(3) { animation-delay: .3s; }
+@keyframes fmu-bounce {
+  0%, 80%, 100% { transform: scale(.6); opacity: .4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fmu-dots span { animation: none; opacity: .8; }
+}
+
+/* ---------- Campo de mensagem ---------- */
+[data-testid="stChatInput"] {
+  border: 2px solid var(--fmu-gray-200);
+  border-radius: 14px;
+  background: var(--fmu-white);
+}
+[data-testid="stChatInput"]:focus-within { border-color: var(--fmu-red); }
+[data-testid="stChatInputSubmitButton"] {
+  background: var(--fmu-red);
+  color: var(--fmu-white);
+  border-radius: 10px;
+}
+[data-testid="stChatInputSubmitButton"]:hover:not(:disabled) { background: var(--fmu-red-dark); }
+[data-testid="stChatInputSubmitButton"] svg { fill: currentColor; color: var(--fmu-white); }
+[data-testid="stChatInputSubmitButton"]:disabled { background: var(--fmu-gray-200); }
+
+/* ---------- Barra lateral ---------- */
+[data-testid="stSidebar"] {
+  background: var(--fmu-white);
+  border-right: 1px solid var(--fmu-gray-200);
+}
+.fmu-doc-item {
+  display: flex;
+  justify-content: space-between;
+  gap: .5rem;
+  padding: .45rem 0;
+  border-bottom: 1px solid var(--fmu-gray-100);
+  font-size: .86rem;
+}
+.fmu-doc-name { color: var(--fmu-black); word-break: break-word; }
+.fmu-doc-count { flex: 0 0 auto; color: var(--fmu-gray-500); }
+
+/* Foco visível para navegação por teclado */
+button:focus-visible, textarea:focus-visible {
+  outline: 3px solid rgba(200, 16, 46, .45) !important;
+  outline-offset: 2px;
+}
+
+/* ---------- Responsividade ---------- */
+@media (max-width: 768px) {
+  .fmu-header h1 { font-size: 1.35rem; }
+  [data-testid="stChatMessage"]:has(.msg-assistant) { margin-right: 0; }
+  [data-testid="stChatMessage"]:has(.msg-user) { margin-left: 1.25rem; }
+}
+@media (max-width: 480px) {
+  .block-container { padding-left: 1rem; padding-right: 1rem; }
+  .fmu-header { padding: .9rem 1rem; gap: .75rem; }
+  .fmu-logo { width: 48px; height: 48px; font-size: 1.05rem; border-radius: 11px; }
+  .fmu-header h1 { font-size: 1.15rem; }
+  .fmu-header p.fmu-subtitle { font-size: .85rem; }
+  [data-testid="stChatMessage"] { padding: .75rem .85rem; }
+  [data-testid="stChatMessage"]:has(.msg-user) { margin-left: .5rem; }
+}
